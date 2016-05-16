@@ -1,22 +1,68 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Person manager</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
+    <h1>Person Manager</h1>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
     <script language="javascript" src="PersonManager.js"></script>
     <script language="javascript" src="index.js"></script>
-    <dev>
-      <input id='name' type="text" value="Anonymous"></input>
-      <input id='age' type="number" value=22></input>
-    </dev>
-    <br/>
 
-    <dev>
-      <button id="loader">Load</button>
-      <button id="saver">Save</button>
-    </dev>
 
-    <div id="status">Pending actions...</div>
+    <div class="col-sm-4">
+      <div id="manager-panel" class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Services information</h3>
+        </div>
+        <div class="panel-body">
+          REST: <mark id="rest-service"></mark><br/>
+          LOGIC: <mark id="logic-service"></mark><br/>
+          REPOSITORY: <mark id="repository-service"></mark>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div id="manager-panel" class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Person management</h3>
+        </div>
+        <div class="panel-body">
+          <dev>
+            <input class="form-control" id='name' type="text" value="Anonymous"></input>
+            <input class="form-control" id='age' type="number" value=22></input>
+          </dev>
+
+          <dev>
+            <button class="btn btn-lg btn-default" id="loader">Load</button>
+            <button class="btn btn-lg btn-primary" id="saver">Save</button>
+          </dev>
+          <div id="status" class="alert alert-info">Pending actions...</div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+    </div>
+
   </body>
 </html>
-
