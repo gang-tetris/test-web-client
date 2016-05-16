@@ -43,7 +43,10 @@ class PersonManager {
             console.log(http_request.responseText);
             var jsonObj = JSON.parse(http_request.responseText);
             if (jsonObj.success) {
-                this.setStatus(jsonObj.response);
+                let person = jsonObj.response;
+                this.setStatus(`<div>Name: ${person.name}</div>
+                                <div>Age: ${person.age}</div>
+                                <div>UUID: ${person.id}</div>`);
             } else {
                 this.setStatus(jsonObj.error || "Error occured");
             }
@@ -57,7 +60,7 @@ class PersonManager {
             console.log(`Response is ${http_request.responseText}`);
             var jsonObj = JSON.parse(http_request.responseText);
             if (jsonObj.success) {
-                let person = jsonObj.person;
+                let person = jsonObj.response;
                 this.setStatus(`<div>Name: ${person.name}</div>
                                 <div>Age: ${person.age}</div>
                                 <div>UUID: ${person.id}</div>`);
