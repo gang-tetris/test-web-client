@@ -37,7 +37,10 @@ class PersonManager {
         var historyEntry = this.addHistoryEntry({
             type: 'request',
             method: 'GET',
-            url: url
+            url: url,
+            data: {
+                name: name
+            }
         });
         http_request.onreadystatechange = this.gotPerson.bind(this,
                                                http_request, historyEntry);
@@ -195,8 +198,13 @@ class PersonManager {
             }
         }
         var id = `history-${this._history.length-1}`;
-        this._historyPanel.innerHTML = `<li id="${id}">${content}</li>
-                                        ${this._historyPanel.innerHTML}`;
+        var newItem = document.createElement("li");
+        newItem.id = id;
+        var textnode = document.createTextNode(content);
+        newItem.appendChild(textnode);
+        this._historyPanel.insertBefore(newItem, this._historyPanel.childNodes[0]);
+        
+        window.document.getElementById(id).onclick = this.restoreHistoryEntry.bind(this, this._history.length-1);
         return this._history.length-1;
     }
 
@@ -204,6 +212,18 @@ class PersonManager {
         var id = `history-${number}`;
         var className = 'list-group-item-' + (success? 'success' : 'danger');
         window.document.getElementById(id).className = className;
+    }
+
+    restoreHistoryEntry(number) {
+        console.log(`Entry ${JSON.stringify(this._history[number])}`);
+        if ('name' in this._history[number].data) {
+            window.document.getElementById('name').value =
+                this._history[number].data.name;
+        }
+        if ('age' in this._history[number].data) {
+            window.document.getElementById('age').value =
+                this._history[number].data.age;
+        }
     }
 }
 
