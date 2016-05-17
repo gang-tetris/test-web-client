@@ -13,10 +13,14 @@ window.onload = () => {
 
     window.document.getElementById('loader').onclick = () => {
         personManager.loadPerson(personNameField.value);
-    }
+    };
     window.document.getElementById('saver').onclick = () => {
         personManager.savePerson(personNameField.value, personAgeField.value);
-    }
+    };
+    window.document.getElementById('add-label').onclick = () => {
+        var value = window.document.getElementById('history-label').value;
+        personManager.addHistoryLabel(value || (new Date()));
+    };
     portField.onchange = () => {
         personManager.setPort(portField.value);
     }

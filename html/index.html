@@ -18,7 +18,6 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Person Manager</h1>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -28,61 +27,92 @@
     <script language="javascript" src="PersonManager.js"></script>
     <script language="javascript" src="index.js"></script>
 
-
-    <div class="col-sm-4">
-      <div id="manager-panel" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Services information</h3>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gang Tetris</a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container  theme-showcase page-header" role="main">
+
+      <h1>Person manager</h1>
+
+      <div class="col-sm-4">
+        <div id="manager-panel" class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Services information</h3>
+          </div>
           <div class="panel-body">
             <div class="form-group">
-            <label for="rest-service">REST</label>
-            <mark id="rest-service"></mark>
+              <label for="rest-service">REST</label>
+              <mark id="rest-service"></mark>
             </div>
 
             <div class="form-group">
-            <label for="logic-service">LOGIC</label>
-            <mark id="logic-service"></mark>
+              <label for="logic-service">LOGIC</label>
+              <mark id="logic-service"></mark>
             </div>
 
             <div class="form-group">
-            <label for="repository-service">REPOSITORY</label>
-            <mark id="repository-service"></mark>
+              <label for="repository-service">REPOSITORY</label>
+              <mark id="repository-service"></mark>
             </div>
 
             <div class="form-group">
-            <label for="port">PORT</label>
-            <select class="form-control" name="port" id="port"></select>
-            </select>
+              <label for="port">PORT</label>
+              <select class="form-control" name="port" id="port"></select>
+              </select>
             </div>
 
           </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div id="manager-panel" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Person management</h3>
         </div>
-        <div class="panel-body">
-          <dev>
+      </div>
+
+      <div class="col-sm-4">
+        <div id="manager-panel" class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Person management</h3>
+          </div>
+          <div class="panel-body">
             <input class="form-control" id='name' type="text" value="Anonymous"></input>
             <input class="form-control" id='age' type="number" value=22></input>
-          </dev>
 
-          <dev>
             <button class="btn btn-lg btn-default" id="loader">Load</button>
             <button class="btn btn-lg btn-primary" id="saver">Save</button>
-          </dev>
-          <div id="status" class="alert alert-info">Pending actions...</div>
-
+            <div id="status" class="alert alert-info">Pending actions...</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <ul id="history" class="list-group">
-      </ul>
-    </div>
+
+      <div class="col-sm-4">
+        <div id="manager-panel" class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">History</h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <input id="history-label" placeholder="Label name"></input>
+              <button id="add-label">Add new label</button>
+            </div>
+            <ul id="history" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </body>

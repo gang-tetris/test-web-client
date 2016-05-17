@@ -210,7 +210,7 @@ class PersonManager {
 
     setHistoryEntryState(number, success) {
         var id = `history-${number}`;
-        var className = 'list-group-item-' + (success? 'success' : 'danger');
+        var className = `list-group-item-${success? 'success' : 'danger'}`;
         window.document.getElementById(id).className = className;
     }
 
@@ -224,6 +224,14 @@ class PersonManager {
             window.document.getElementById('age').value =
                 this._history[number].data.age;
         }
+    }
+
+    addHistoryLabel(description) {
+        var newItem = document.createElement("li");
+        newItem.className = 'list-group-item-info';
+        var textnode = document.createTextNode(description);
+        newItem.appendChild(textnode);
+        this._historyPanel.insertBefore(newItem, this._historyPanel.childNodes[0]);
     }
 }
 
