@@ -7,8 +7,12 @@ class PersonManager {
         this._panel = panel;
     }
 
-    setStatus(description, error) {
+    setStatus(description, error, code) {
         this._statusBar.innerHTML = description;
+        if (!!code) {
+             this._statusBar.innerHTM += `(${code})`;
+        } else {
+        }
         if (!!error) {
             this._statusBar.className = 'alert alert-danger';
         } else {
@@ -44,20 +48,22 @@ class PersonManager {
     }
 
     gotPerson(http_request) {
-        if (http_request.readyState == 4){
+        if (http_request.readyState == 4 && http_request.status) {
             this.setStatus(`Parsing GET result`);
             try {
                 console.log(http_request.responseText);
                 var jsonObj = JSON.parse(http_request.responseText);
                 if (jsonObj.success) {
-                    this.displayPerson(jsonObj.response.person);
+                    this.displayPerson(jsonObj.response.person,
+                                       false, http_request.status);
                     this.displayServicesInfo(jsonObj.response);
                 } else {
-                    this.setStatus(jsonObj.error || "Error occured", true);
+                    this.setStatus(jsonObj.error || "Error occured",
+                                   true, http_request.status);
                     this.displayServicesInfo();
                 }
             } catch (e) {
-                this.setStatus(e.toString(), true);
+                this.setStatus(e.toString(), true, http_request.status);
                 this.displayServicesInfo();
             }
         }
@@ -71,14 +77,14 @@ class PersonManager {
                 console.log(`Response is ${http_request.responseText}`);
                 var jsonObj = JSON.parse(http_request.responseText);
                 if (jsonObj.success) {
-                    this.displayPerson(jsonObj.response.person);
+                    this.displayPerson(jsonObj.response.person, false, http_request.status);
                     this.displayServicesInfo(jsonObj.response);
                 } else {
-                    this.setStatus(jsonObj.error || "Error occured", true);
+                    this.setStatus(jsonObj.error || "Error occured", true, http_request.status);
                     this.displayServicesInfo();
                 }
             } catch (e) {
-                this.setStatus(e.toString(), true);
+                this.setStatus(e.toString(), true, http_request.status);
                 this.displayServicesInfo();
             }
         }
@@ -95,6 +101,7 @@ class PersonManager {
             ['rest', 'logic', 'repository'].forEach((key) => {
                 window.document.getElementById(`${key}-service`).innerHTML = '';
             })
+            return;
         }
         Object.keys(response).forEach((key) => {
             if (['rest', 'logic', 'repository'].indexOf(key) > -1) {
