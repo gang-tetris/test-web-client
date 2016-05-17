@@ -4,8 +4,10 @@ window.onload = () => {
     var statusBar = window.document.getElementById('status');
     var panel = window.document.getElementById('manager-panel');
     var portField = window.document.getElementById('port');
+    var historyPanel = window.document.getElementById('history');
 
-    var personManager = new PersonManager(statusBar, panel, portField);
+    var personManager = new PersonManager(statusBar, panel, portField,
+                                          historyPanel);
     var personNameField = window.document.getElementById('name');
     var personAgeField = window.document.getElementById('age');
 
