@@ -197,20 +197,14 @@ class PersonManager {
                           (${entry.data.name}, ${entry.data.age})`;
             }
         }
-        var id = `history-${this._history.length-1}`;
-        var newItem = document.createElement("li");
-        newItem.id = id;
-        var textnode = document.createTextNode(content);
-        newItem.appendChild(textnode);
-        this._historyPanel.insertBefore(newItem, this._historyPanel.childNodes[0]);
-        
-        window.document.getElementById(id).onclick = this.restoreHistoryEntry.bind(this, this._history.length-1);
+        var onclick = this.restoreHistoryEntry.bind(this, this._history.length-1);
+        this.addHistoryElement(this._history.length-1, content, '', onclick);
         return this._history.length-1;
     }
 
     setHistoryEntryState(number, success) {
         var id = `history-${number}`;
-        var className = `list-group-item-${success? 'success' : 'danger'}`;
+        var className = success? 'success' : 'danger';
         window.document.getElementById(id).className = className;
     }
 
@@ -227,11 +221,26 @@ class PersonManager {
     }
 
     addHistoryLabel(description) {
-        var newItem = document.createElement("li");
-        newItem.className = 'list-group-item-info';
-        var textnode = document.createTextNode(description);
-        newItem.appendChild(textnode);
-        this._historyPanel.insertBefore(newItem, this._historyPanel.childNodes[0]);
+        this.addHistoryElement('', description, 'info');
+    }
+
+    addHistoryElement(id, description, kind, onclick) {
+        var tr = document.createElement("tr");
+        tr.className = kind;
+        if (id !== '' && id !== null && id !== undefined) {
+            tr.id = `history-${id}`;
+        }
+        if (typeof onclick === 'function') {
+            tr.onclick = onclick;
+        }
+
+        var tdDescription = tr.insertCell(document.createElement("td"));
+        var tdId = tr.insertCell(document.createElement("td"));
+
+        tdId.appendChild(document.createTextNode(id));
+        tdDescription.appendChild(document.createTextNode(description));
+
+        this._historyPanel.insertBefore(tr, this._historyPanel.childNodes[0]);
     }
 }
 
