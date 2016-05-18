@@ -72,10 +72,10 @@
               <mark id="repository-service"></mark>
             </div>
 
+            <hr/>
             <div class="form-group">
-              <label for="port">PORT</label>
+              <label for="port">Queries port</label>
               <select class="form-control" name="port" id="port"></select>
-              </select>
             </div>
 
           </div>
@@ -88,11 +88,16 @@
             <h3 class="panel-title">Person management</h3>
           </div>
           <div class="panel-body">
-            <input class="form-control" id='name' type="text" value="Anonymous"></input>
-            <input class="form-control" id='age' type="number" value=22></input>
-
-            <button class="btn btn-lg btn-default" id="loader">Load</button>
-            <button class="btn btn-lg btn-primary" id="saver">Save</button>
+            <div class="form-group">
+              <input class="form-control" id='name' type="text" value="Anonymous"></input>
+            </div>
+            <div class="form-group">
+              <input class="form-control" id='age' type="number" value=22></input>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-lg btn-default" id="loader">Load</button>
+              <button class="btn btn-lg btn-default" id="saver">Save</button>
+            </div>
             <div id="status" class="alert alert-info">Pending actions...</div>
           </div>
         </div>
@@ -105,10 +110,15 @@
           </div>
           <div class="panel-body">
             <div class="form-group">
-              <input id="history-label" placeholder="Label name"></input>
-              <button id="add-label">Add new label</button>
+              <input class="form-control" id="history-label" placeholder="Label name"></input>
             </div>
-            <ul id="history" class="list-group"></ul>
+            <div class="form-group">
+              <button id="add-label" class="btn btn-lg btn-default">Add new label</button>
+            </div>
+            <table class="table table-striped">
+              <th>#</th><th>Description</th>
+              <tbody id="history"><tr></tr></tbody>
+            </table>
           </div>
         </div>
       </div>
